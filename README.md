@@ -21,3 +21,6 @@
 #### 7. 하둡 종료: stop-all.sh
 
 ## 3. 전국의 농수축산물 가격조사비교
+
+<img src="https://user-images.githubusercontent.com/54352373/101183277-a7024100-3692-11eb-9e8b-88abb7ec7b26.PNG" width="700" height="370">
+<img src="https://user-images.githubusercontent.com/54352373/101183302-af5a7c00-3692-11eb-8895-110fb82ec788.PNG" width="700" height="370">
