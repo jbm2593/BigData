@@ -1,0 +1,6 @@
+%sql
+SELECT sortation, item_code, item, rating_name, survey_name, AVG(previous_price), AVG(today_price), market 
+FROM PRICE
+WHERE survey_name = '±¹»ê'
+GROUP BY sortation, item_code, item, rating_name, survey_name, market
+ORDER BY sortation, item_code, item , rating_name, AVG(previous_price), AVG(today_price), market

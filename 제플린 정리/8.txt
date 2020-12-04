@@ -1,0 +1,16 @@
+///// SQL 질의 UDF
+// 데이터세트를 뷰(view)로 등록
+
+
+// UDF 함수 정의
+def grade(s:String):String = {
+    val lastS = s.substring(s.lastIndexOf('(')+1)
+    lastS
+}
+
+// UDF 함수 등록
+spark.udf.register("Grade",grade(_:String))
+
+// SQL 질의 적용
+val rating = spark.sql("SELECT Grade(rating_name), count(item) AS countItem FROM PRICE GROUP BY Grade(rating_name)")
+rating.show

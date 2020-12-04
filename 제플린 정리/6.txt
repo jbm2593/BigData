@@ -1,0 +1,5 @@
+%sql SELECT market, AVG(today_price) AS avg_price
+FROM PRICE
+where sortation = '¼ÒºñÀÚ°¡°Ý' AND survey_item IN('½Ò', 'Âý½Ò', 'Äá') AND area IN('¼­¿ï','¼­¿ï¼­ºÎ')
+GROUP BY market
+ORDER BY avg_price

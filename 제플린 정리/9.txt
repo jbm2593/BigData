@@ -1,0 +1,8 @@
+///// SQL 질의 UDF, 인라인 함수 (inline function)
+// UDF 인라인 함수 등록
+spark.udf.register("Grade", (s: String) => 
+    {s.substring(s.lastIndexOf('(')+ 1)})
+
+//SQL 질의 적용
+val rating = spark.sql("SELECT Grade(rating_name), count(item) AS countItem FROM PRICE GROUP BY Grade(rating_name) ORDER BY countItem DESC")
+rating.show

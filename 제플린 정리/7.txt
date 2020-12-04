@@ -1,0 +1,10 @@
+//// 데이터세트 연산 UDF
+// UDF 함수 정의
+val grade = udf((s: String) => {
+    val lastS = s.substring(s.lastIndexOf('(')+1)
+    lastS
+})
+
+//등급 별로 농축산물 조회
+val rating = priceDS.groupBy(grade(priceDS("rating_name"))).count
+rating.show

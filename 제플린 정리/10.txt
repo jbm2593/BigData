@@ -1,0 +1,3 @@
+//SQL 질의 적용
+val rating = spark.sql("SELECT Grade(rating_name), count(item) AS countItem FROM PRICE GROUP BY Grade(rating_name) ORDER BY countItem DESC")
+rating.show

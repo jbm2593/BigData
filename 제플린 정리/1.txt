@@ -1,0 +1,42 @@
+//클래스 임포트
+import spark.implicits._
+import org.apache.spark.sql.types._
+
+//스키마 생성
+val priceSchema = new StructType(Array(
+			new StructField("sort_code", IntegerType, true),
+			new StructField("sortation", StringType, true),
+			new StructField("item_code", IntegerType, true),
+			new StructField("item", StringType, true),
+			new StructField("survey_code", IntegerType, true),
+			new StructField("survey_item", StringType, true),
+			new StructField("item_code2", IntegerType, true),
+			new StructField("standard_name", StringType, true),
+			new StructField("survey_code2", IntegerType, true),
+			new StructField("survey_name", StringType, true),
+			new StructField("rating", IntegerType, true),
+			new StructField("rating_name", StringType, true),
+			new StructField("unit", StringType, true),
+			new StructField("today_price", IntegerType, true),
+			new StructField("previous_price", IntegerType, true),
+			new StructField("area_code", IntegerType, true),
+			new StructField("area", StringType, true),
+			new StructField("market_code", IntegerType, true),
+			new StructField("market", StringType, true),
+			new StructField("survey_market_code", IntegerType, true),
+			new StructField("survey_market", StringType, true)			
+		))
+		
+//데이터 적재 후 데이터프레임 생성
+val priceDF = spark.read.format("csv").schema(priceSchema).load("/termdata/price/PRICE.csv").toDF("sort_code", "sortation", "item_code", "item", "survey_code",
+ "survey_item", "item_code2", "standard_name", "survey_code2", "survey_name", 
+"rating", "rating_name","unit","today_price","previous_price",
+"area_code","area","market_code","market","survey_market_code","survey_market")
+
+//케이스 클래스 정의
+case class price(sort_code:Integer, sortation:String, item_code:Integer, item:String,  survey_code:Integer, survey_item:String, item_code2:Integer, standard_name:String,
+ survey_code2:Integer, survey_name:String, rating:Integer, rating_name:String, unit:String, today_price:Integer, previous_price:Integer,
+ area_code:Integer, area:String, market_code:Integer, market:String, survey_market_code:Integer, survey_market:String)
+ 
+//데이터프레임을 데이터세트로 변환
+val priceDS = priceDF.as[price]

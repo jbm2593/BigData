@@ -1,0 +1,6 @@
+%sql
+SELECT sortation, item_code, item, rating_name, survey_name, ROUND(AVG(previous_price)) AS avg_previous, ROUND(AVG(today_price)) AS avg_today, market 
+FROM PRICE
+WHERE survey_name = '국산' AND area IN('서울', '부산')
+GROUP BY sortation, item_code, item, rating_name, survey_name, market
+ORDER BY sortation, avg_previous, avg_today , item_code, rating_name, market

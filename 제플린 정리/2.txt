@@ -1,0 +1,2 @@
+//스키마 프린트
+priceDS.printSchema()
